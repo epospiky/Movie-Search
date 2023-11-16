@@ -1,4 +1,5 @@
 import ListGroup from "./components/ListGroup";
+import Navbar from "./components/Navbar";
 
 function App() {
   let items = [
@@ -15,6 +16,7 @@ function App() {
   };
   return (
     <div>
+      <Navbar />
       <ListGroup
         items={items}
         heading="Cities"
