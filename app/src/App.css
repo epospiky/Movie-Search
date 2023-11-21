@@ -1,0 +1,65 @@
+.col-auto{
+    width: 70%!important;
+}
+
+label{
+    position: relative;
+    width: 100%;
+}
+
+.fasearch{
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    margin-top: 8px;
+    margin-left: 5px;
+}
+
+.searchbox{
+    padding-left: 35px!important;
+    width: 100%!important;
+}
+
+.mode-box{
+    width: 10%;
+}
+
+.mode-box-container{
+    cursor: pointer;
+    background: #464444;
+    position: relative;
+    width: 30px;
+    height: 15px;
+    border-radius: 40%;
+    box-shadow: inset;
+    padding: 0 1px 0 1px;
+    
+}
+
+.switch{
+    position: absolute;
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    box-shadow: inset;
+    background-color: transparent;
+    background-image: url("../src/Images/sun.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.mode-box-container > span{
+    font-size: 15px;
+}
+
+.darkOn{
+    margin-left: 2rem!important;  
+    background-color: transparent;
+    background-image: url("../src/Images/moon.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition-property: all;
+    transition-duration: 700ms;
+}
+

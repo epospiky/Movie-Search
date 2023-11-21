@@ -1,36 +1,34 @@
+import logo from "../Images/logo.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+
 const Navbar = () => {
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
-            Navbar
+            <img src={logo} alt="Logo" />
           </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div className="navbar-nav">
-              <a className="nav-link active" aria-current="page" href="#">
-                Home
-              </a>
-              <a className="nav-link" href="#">
-                Features
-              </a>
-              <a className="nav-link" href="#">
-                Pricing
-              </a>
-              <a className="nav-link disabled" aria-disabled="true">
-                Disabled
-              </a>
+          <div className="col-auto" id="">
+            <label htmlFor="search">
+              <FontAwesomeIcon
+                icon={faSearch}
+                className="fasearch"
+                aria-hidden="true"
+              />
+              <input
+                type="text"
+                placeholder="Search movies... "
+                className="searchbox form-control"
+                name="search"
+              />
+            </label>
+          </div>
+          <div className="mode-box">
+            <div className="mode-box-container">
+              <div className="switch"></div>
+              <span>DarkMode</span>
             </div>
           </div>
         </div>

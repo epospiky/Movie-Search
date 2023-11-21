@@ -1,5 +1,6 @@
 import ListGroup from "./components/ListGroup";
 import Navbar from "./components/Navbar";
+import "./App.css";
 
 function App() {
   let items = [
