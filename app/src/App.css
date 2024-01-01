@@ -1,6 +1,4 @@
-.col-auto{
-    width: 70%!important;
-}
+
 
 label{
     position: relative;
@@ -20,9 +18,7 @@ label{
     width: 100%!important;
 }
 
-.mode-box{
-    width: 10%;
-}
+
 
 .mode-box-container{
     cursor: pointer;

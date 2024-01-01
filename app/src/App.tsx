@@ -1,15 +1,19 @@
-import ListGroup from "./components/ListGroup";
+import Genre from "./components/ListGroup";
 import Navbar from "./components/Navbar";
 import "./App.css";
 
 function App() {
   let items = [
-    "New York",
-    "San Francisco",
-    "Tokyo",
-    "London",
-    "Lagos",
-    "Paris",
+    "Action",
+    "Comedy",
+    "Drama",
+    "Sci-Fi",
+    "Fantasy",
+    "Horror",
+    "Thriller",
+    "Romance",
+    "Mystery",
+    "Animation",
   ];
 
   const handleSelectItem = (item: string) => {
@@ -18,11 +22,7 @@ function App() {
   return (
     <div>
       <Navbar />
-      <ListGroup
-        items={items}
-        heading="Cities"
-        onSelectItem={handleSelectItem}
-      />
+      <Genre items={items} heading="Genres" onSelectItem={handleSelectItem} />
     </div>
   );
 }
