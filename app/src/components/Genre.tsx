@@ -10,7 +10,7 @@ function Genre({ items, heading, onSelectItem }: Props) {
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
   return (
-    <>
+    <div className="col-md-4">
       <h1>{heading}</h1>
       {items.length === 0 && <p>No item found!</p>}
       <ul className="list-group">
@@ -31,7 +31,7 @@ function Genre({ items, heading, onSelectItem }: Props) {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }
 

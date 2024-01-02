@@ -1,6 +1,7 @@
 import Genre from "./components/ListGroup";
 import Navbar from "./components/Navbar";
 import "./App.css";
+import MovieTab from "./components/MovieTab";
 
 function App() {
   let items = [
@@ -16,13 +17,29 @@ function App() {
     "Animation",
   ];
 
+  const options = { method: "GET", headers: { accept: "application/json" } };
+
+  fetch("https://api.themoviedb.org/3/authentication", options)
+    .then((response) => response.json())
+    .then((response) => console.log(response))
+    .catch((err) => console.error(err));
+
   const handleSelectItem = (item: string) => {
     console.log(item);
   };
   return (
-    <div>
+    <div className="container-fluid">
       <Navbar />
-      <Genre items={items} heading="Genres" onSelectItem={handleSelectItem} />
+      <div className="row">
+        <div className="col-md-2">
+          <Genre
+            items={items}
+            heading="Genres"
+            onSelectItem={handleSelectItem}
+          />
+        </div>
+        <MovieTab />
+      </div>
     </div>
   );
 }

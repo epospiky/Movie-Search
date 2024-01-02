@@ -5,8 +5,8 @@ import Search from "./Search";
 
 const Navbar = () => {
   return (
-    <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+    <div className="row">
+      <nav className="col-12 navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <a className="navbar-brand w-25" href="#">
             <img src={logo} alt="Logo" className="w-50 h-50" />
@@ -29,7 +29,7 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-    </>
+    </div>
   );
 };
 
