@@ -1,7 +1,6 @@
 import Genre from "./components/ListGroup";
 import Navbar from "./components/Navbar";
 import "./App.css";
-import MovieTab from "./components/MovieTab";
 import React, { useState, useEffect } from "react";
 import MovieList from "./components/MovieList";
 
@@ -34,16 +33,42 @@ function App() {
   useEffect(() => {
     const fetchPopularMovies = async () => {
       try {
-        const response = await fetch(
+        // Fetch popular movies
+        const popularMoviesResponse = await fetch(
           `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`
         );
 
-        if (!response.ok) {
-          throw new Error(`Error: ${response.status}`);
+        if (!popularMoviesResponse.ok) {
+          throw new Error(`Error: ${popularMoviesResponse.status}`);
         }
 
-        const data = await response.json();
-        setMovies(data.results);
+        const popularMoviesData = await popularMoviesResponse.json();
+
+        // Fetch genres
+        const genresResponse = await fetch(
+          `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`
+        );
+
+        if (!genresResponse.ok) {
+          throw new Error(`Error: ${genresResponse.status}`);
+        }
+
+        const genresData = await genresResponse.json();
+
+        // Map genre names to movie genres
+        const moviesWithGenres = popularMoviesData.results.map(
+          (movie: Movie) => ({
+            ...movie,
+            genres: movie.genre_ids.map((genreId: number) => {
+              const genre = genresData.genres.find(
+                (g: { id: number; name: string }) => g.id === genreId
+              );
+              return genre ? genre.name : "";
+            }),
+          })
+        );
+
+        setMovies(moviesWithGenres);
       } catch (error: any) {
         setError(error.message);
       }
@@ -60,8 +85,11 @@ function App() {
     return <div>Loading...</div>;
   }
 
-  const handleSelectItem = (item: string) => {
-    console.log(item);
+  const handleSelectItem = (selectedGenre: string) => {
+    const filteredMovies = movies.filter((movie) =>
+      movie.genres.includes(selectedGenre)
+    );
+    setSearchResults(filteredMovies);
   };
   return (
     <div className="container-fluid">
@@ -74,7 +102,7 @@ function App() {
             onSelectItem={handleSelectItem}
           />
         </div>
-        <MovieList movies={movies} />
+        <MovieList movies={searchResults.length > 0 ? searchResults : movies} />
       </div>
     </div>
   );
