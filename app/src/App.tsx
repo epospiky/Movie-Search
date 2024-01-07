@@ -3,6 +3,8 @@ import Navbar from "./components/Navbar";
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import MovieList from "./components/MovieList";
+import MovieDetails from "./components/MovieDetails";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 interface Movie {
   id: number;
@@ -43,7 +45,7 @@ function App() {
         }
 
         const popularMoviesData = await popularMoviesResponse.json();
-
+        console.log(popularMoviesData);
         // Fetch genres
         const genresResponse = await fetch(
           `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`
@@ -92,19 +94,19 @@ function App() {
     setSearchResults(filteredMovies);
   };
   return (
-    <div className="container-fluid">
-      <Navbar />
-      <div className="row">
-        <div className="col-md-2">
-          <Genre
-            items={items}
-            heading="Genres"
-            onSelectItem={handleSelectItem}
-          />
-        </div>
-        <MovieList movies={searchResults.length > 0 ? searchResults : movies} />
-      </div>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/movie/:id" element={<MovieDetails movie={movie} />} />
+        <Route
+          path="*"
+          element={
+            <MovieList
+              movies={searchResults.length > 0 ? searchResults : movies}
+            />
+          }
+        />
+      </Routes>
+    </Router>
   );
 }
 
