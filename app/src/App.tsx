@@ -95,17 +95,29 @@ function App() {
   };
   return (
     <Router>
-      <Routes>
-        <Route path="/movie/:id" element={<MovieDetails movie={movie} />} />
-        <Route
-          path="*"
-          element={
-            <MovieList
-              movies={searchResults.length > 0 ? searchResults : movies}
+      <div className="container-fluid">
+        <Navbar />
+        <div className="row">
+          <div className="col-md-2">
+            <Genre
+              items={["All", ...new Set(movies.flatMap((m) => m.genres))]}
+              heading="Genres"
+              onSelectItem={handleSelectItem}
             />
-          }
-        />
-      </Routes>
+          </div>
+          <Routes>
+            <Route path="/movie/:id" element={<MovieDetails />} />
+            <Route
+              path="/"
+              element={
+                <MovieList
+                  movies={searchResults.length > 0 ? searchResults : movies}
+                />
+              }
+            />
+          </Routes>
+        </div>
+      </div>
     </Router>
   );
 }
