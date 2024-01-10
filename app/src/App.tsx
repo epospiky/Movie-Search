@@ -5,12 +5,13 @@ import React, { useState, useEffect } from "react";
 import MovieList from "./components/MovieList";
 import MovieDetails from "./components/MovieDetails";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 interface Movie {
   id: number;
   title: string;
   poster_path: string | null;
-  // Add more fields as needed
+  backdrop_path: string | null;
 }
 function App() {
   let items = [
@@ -98,13 +99,16 @@ function App() {
       <div className="container-fluid">
         <Navbar />
         <div className="row">
-          <div className="col-md-2">
-            <Genre
-              items={["All", ...new Set(movies.flatMap((m) => m.genres))]}
-              heading="Genres"
-              onSelectItem={handleSelectItem}
-            />
-          </div>
+          {/* Conditionally render Genre component based on the route */}
+          {window.location.pathname !== "/movie/:id" && (
+            <div className="col-md-2">
+              <Genre
+                items={["All", ...new Set(movies.flatMap((m) => m.genres))]}
+                heading="Genres"
+                onSelectItem={handleSelectItem}
+              />
+            </div>
+          )}
           <Routes>
             <Route path="/movie/:id" element={<MovieDetails />} />
             <Route
