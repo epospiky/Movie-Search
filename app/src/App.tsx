@@ -12,6 +12,7 @@ interface Movie {
   title: string;
   poster_path: string | null;
   backdrop_path: string | null;
+  // Add more fields as needed
 }
 function App() {
   let items = [
@@ -96,23 +97,20 @@ function App() {
   };
   return (
     <Router>
-      <div className="container-fluid">
+      <body className="container-fluid">
         <Navbar />
         <div className="row">
-          {/* Conditionally render Genre component based on the route */}
-          {window.location.pathname !== "/movie/:id" && (
-            <div className="col-md-2">
-              <Genre
-                items={["All", ...new Set(movies.flatMap((m) => m.genres))]}
-                heading="Genres"
-                onSelectItem={handleSelectItem}
-              />
-            </div>
-          )}
+          <div className="col-md-2">
+            <Genre
+              items={["All", ...new Set(movies.flatMap((m) => m.genres))]}
+              heading="Genres"
+              onSelectItem={handleSelectItem}
+            />
+          </div>
           <Routes>
             <Route path="/movie/:id" element={<MovieDetails />} />
             <Route
-              path="/"
+              path="*"
               element={
                 <MovieList
                   movies={searchResults.length > 0 ? searchResults : movies}
@@ -121,7 +119,7 @@ function App() {
             />
           </Routes>
         </div>
-      </div>
+      </body>
     </Router>
   );
 }

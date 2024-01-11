@@ -71,3 +71,14 @@ body.darkMode{
 .darkMode .list1__group span, .darkMode .list2__group span{
     color: #a8a8a8;
 }
+.modal-title{ color: "#067488"; margin: 0 }
+.modal_bg{
+        background-size: "cover";
+        background-position: "center";
+        min-height: "100vh";
+        display: "flex";
+        flex-direction: "column";
+        align-items: "center";
+        justify-content: "center";
+        color: "#fff";
+}

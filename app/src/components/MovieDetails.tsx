@@ -33,10 +33,15 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({}) => {
     return <div>Loading...</div>;
   }
   const backgroundStyle = {
-    backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     minHeight: "100vh", // Set a minimum height for better visibility
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "#fff",
   };
   return (
     <div style={backgroundStyle}>
