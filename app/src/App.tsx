@@ -8,6 +8,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 interface Movie {
+  genre_ids: any;
+  genres: any;
   id: number;
   title: string;
   poster_path: string | null;
@@ -15,19 +17,6 @@ interface Movie {
   // Add more fields as needed
 }
 function App() {
-  let items = [
-    "Action",
-    "Comedy",
-    "Drama",
-    "Sci-Fi",
-    "Fantasy",
-    "Horror",
-    "Thriller",
-    "Romance",
-    "Mystery",
-    "Animation",
-  ];
-
   const [movies, setMovies] = useState<Movie[]>([]);
   const [searchResults, setSearchResults] = useState<Movie[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -98,7 +87,7 @@ function App() {
   return (
     <Router>
       <body className="container-fluid">
-        <Navbar />
+        <Navbar movies={[]} />
         <div className="row">
           <div className="col-md-2">
             <Genre

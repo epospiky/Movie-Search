@@ -17,6 +17,12 @@ interface MovieListProps {
 const MovieList: React.FC<MovieListProps> = ({ movies }) => {
   const [show, setShow] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
+  const [filteredMovies, setFilteredMovies] = useState<Movie[]>(movies);
+
+  useEffect(() => {
+    setFilteredMovies(movies);
+  }, [movies]);
+
   const handleShow = (movie: Movie) => {
     setSelectedMovie(movie);
     setShow(true);

@@ -3,12 +3,23 @@ import logo from "../Images/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import Search from "./Search";
+import MovieList, { Movie } from "./MovieList";
 
-const Navbar = () => {
+interface NavbarProps {
+  movies: Movie[];
+}
+const Navbar: React.FC<NavbarProps> = ({ movies }) => {
   const [darkMode, setDarkMode] = useState(false);
+  const [filteredMovies, setFilteredMovies] = useState<Movie[]>(movies);
 
   const handleModeToggle = () => {
     setDarkMode(!darkMode);
+  };
+  const handleSearch = (searchInput: string) => {
+    const filtered = movies.filter((movie) =>
+      movie.title.toLowerCase().includes(searchInput.toLowerCase())
+    );
+    setFilteredMovies(filtered);
   };
 
   return (
@@ -29,7 +40,7 @@ const Navbar = () => {
                 className="fasearch"
                 aria-hidden="true"
               />
-              <Search />
+              <Search onSearch={handleSearch} />
             </label>
           </div>
           <div className="mode-box w-25">
@@ -65,6 +76,7 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+      <MovieList movies={filteredMovies} />
     </div>
   );
 };
