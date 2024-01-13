@@ -2,24 +2,27 @@ import React, { useState } from "react";
 import logo from "../Images/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import Search from "./Search";
 import MovieList, { Movie } from "./MovieList";
 
 interface NavbarProps {
   movies: Movie[];
+  onSearch: (searchInput: string) => void;
 }
-const Navbar: React.FC<NavbarProps> = ({ movies }) => {
+
+const Navbar: React.FC<NavbarProps> = ({ movies, onSearch }) => {
   const [darkMode, setDarkMode] = useState(false);
+
+  const [searchInput, setSearchInput] = useState("");
   const [filteredMovies, setFilteredMovies] = useState<Movie[]>(movies);
 
   const handleModeToggle = () => {
     setDarkMode(!darkMode);
   };
-  const handleSearch = (searchInput: string) => {
-    const filtered = movies.filter((movie) =>
-      movie.title.toLowerCase().includes(searchInput.toLowerCase())
-    );
-    setFilteredMovies(filtered);
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const input = event.target.value;
+    setSearchInput(input);
+    onSearch(input);
   };
 
   return (
@@ -34,13 +37,19 @@ const Navbar: React.FC<NavbarProps> = ({ movies }) => {
             <img src={logo} alt="Logo" className="w-50 h-50" />
           </a>
           <div className="col-auto w-50" id="">
-            <label htmlFor="search">
+            <label className=" w-100" htmlFor="search">
               <FontAwesomeIcon
                 icon={faSearch}
                 className="fasearch"
                 aria-hidden="true"
               />
-              <Search onSearch={handleSearch} />
+              <input
+                onChange={handleSearch}
+                type="text"
+                placeholder="Search movies... "
+                className="searchbox form-control rounded-pill"
+                name="search"
+              />
             </label>
           </div>
           <div className="mode-box w-25">
@@ -76,7 +85,6 @@ const Navbar: React.FC<NavbarProps> = ({ movies }) => {
           </div>
         </div>
       </nav>
-      <MovieList movies={filteredMovies} />
     </div>
   );
 };

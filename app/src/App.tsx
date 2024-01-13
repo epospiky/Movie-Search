@@ -1,11 +1,8 @@
-import Genre from "./components/ListGroup";
-import Navbar from "./components/Navbar";
-import "./App.css";
 import React, { useState, useEffect } from "react";
 import MovieList from "./components/MovieList";
-import MovieDetails from "./components/MovieDetails";
+import Navbar from "./components/Navbar";
+import Genre from "./components/ListGroup";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useParams } from "react-router-dom";
 
 interface Movie {
   genre_ids: any;
@@ -14,8 +11,8 @@ interface Movie {
   title: string;
   poster_path: string | null;
   backdrop_path: string | null;
-  // Add more fields as needed
 }
+
 function App() {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [searchResults, setSearchResults] = useState<Movie[]>([]);
@@ -36,7 +33,6 @@ function App() {
         }
 
         const popularMoviesData = await popularMoviesResponse.json();
-        console.log(popularMoviesData);
         // Fetch genres
         const genresResponse = await fetch(
           `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`
@@ -70,6 +66,13 @@ function App() {
     fetchPopularMovies();
   }, [apiKey]);
 
+  const handleSearch = (searchInput: string) => {
+    const filteredMovies = movies.filter((movie) =>
+      movie.title.toLowerCase().includes(searchInput.toLowerCase())
+    );
+    setSearchResults(filteredMovies);
+  };
+
   if (error) {
     return <div>Error: {error}</div>;
   }
@@ -84,10 +87,11 @@ function App() {
     );
     setSearchResults(filteredMovies);
   };
+
   return (
     <Router>
-      <body className="container-fluid">
-        <Navbar movies={[]} />
+      <div className="container-fluid">
+        <Navbar movies={movies} onSearch={handleSearch} />
         <div className="row">
           <div className="col-md-2">
             <Genre
@@ -97,7 +101,6 @@ function App() {
             />
           </div>
           <Routes>
-            <Route path="/movie/:id" element={<MovieDetails />} />
             <Route
               path="*"
               element={
@@ -108,7 +111,7 @@ function App() {
             />
           </Routes>
         </div>
-      </body>
+      </div>
     </Router>
   );
 }
