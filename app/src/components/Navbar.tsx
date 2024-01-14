@@ -7,17 +7,12 @@ import MovieList, { Movie } from "./MovieList";
 interface NavbarProps {
   movies: Movie[];
   onSearch: (searchInput: string) => void;
+  onModeToggle: () => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ movies, onSearch }) => {
-  const [darkMode, setDarkMode] = useState(false);
-
+const Navbar: React.FC<NavbarProps> = ({ movies, onSearch, onModeToggle }) => {
   const [searchInput, setSearchInput] = useState("");
   const [filteredMovies, setFilteredMovies] = useState<Movie[]>(movies);
-
-  const handleModeToggle = () => {
-    setDarkMode(!darkMode);
-  };
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const input = event.target.value;
@@ -26,12 +21,8 @@ const Navbar: React.FC<NavbarProps> = ({ movies, onSearch }) => {
   };
 
   return (
-    <div className={`row ${darkMode ? "darkMode" : ""}`}>
-      <nav
-        className={`col-12 navbar navbar-expand-lg bg-body-tertiary ${
-          darkMode ? "darkMode" : ""
-        }`}
-      >
+    <div className="row">
+      <nav className="col-12 navbar navbar-expand-lg bg-body-tertiary ">
         <div className="container-fluid">
           <a className="navbar-brand w-25" href="#">
             <img src={logo} alt="Logo" className="w-50 h-50" />
@@ -69,7 +60,7 @@ const Navbar: React.FC<NavbarProps> = ({ movies, onSearch }) => {
                   paddingLeft: "1px",
                   paddingRight: "1px",
                 }}
-                onClick={handleModeToggle}
+                onClick={onModeToggle}
               >
                 <div
                   className="switch rounded-circle"

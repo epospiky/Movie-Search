@@ -75,7 +75,7 @@ const MovieList: React.FC<MovieListProps> = ({ movies }) => {
             backgroundSize: "cover",
             backgroundPosition: "center",
             maxHeight: "100vh",
-            maxWidth: "auto",
+            width: "100%",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",

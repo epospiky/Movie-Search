@@ -41,14 +41,14 @@ label{
 
 body.darkMode{
     background-color: #272525;
-    color: #e7e7e7;;
+    color: #e7e7e7;
 }
 .darkMode .mode__box--container{
     background-color: rgba(255,255,255, 0.4);
     transition: all 700ms ease-in-out;
 
 }
-.darkMode nav, .darkMode .filter__button, .darkMode .filter__container, .darkMode .search__box input, .darkMode .country__box, .darkMode .country__back--btn, .darkMode .list3__group span, .darkMode .fa  {
+.darkMode nav, .darkMode .filter__button, .darkMode .filter__container, .darkMode .search__box input, .darkMode .country__box, .darkMode .country__back--btn, .darkMode .list3__group span, .darkMode .fa, .darkMode div, .darkMode ul, .darkMode li, .darkMode .modal_bg, .darkMode .modal-title {
     background-color: #3e3d41;
     color: #e7e7e7;
 }
@@ -71,7 +71,6 @@ body.darkMode{
 .darkMode .list1__group span, .darkMode .list2__group span{
     color: #a8a8a8;
 }
-.modal-title{ color: "#067488"; margin: 0 }
 .modal_bg{
         background-size: "cover";
         background-position: "center";

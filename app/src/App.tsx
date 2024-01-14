@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./App.css";
 import MovieList from "./components/MovieList";
 import Navbar from "./components/Navbar";
 import Genre from "./components/ListGroup";
@@ -19,7 +20,7 @@ function App() {
   const [error, setError] = useState<string | null>(null);
 
   const apiKey = "f578695cc79be0401e2ea5d010ca87d0";
-
+  const [darkMode, setDarkMode] = useState(false);
   useEffect(() => {
     const fetchPopularMovies = async () => {
       try {
@@ -66,6 +67,10 @@ function App() {
     fetchPopularMovies();
   }, [apiKey]);
 
+  const handleModeToggle = () => {
+    setDarkMode(!darkMode);
+  };
+
   const handleSearch = (searchInput: string) => {
     const filteredMovies = movies.filter((movie) =>
       movie.title.toLowerCase().includes(searchInput.toLowerCase())
@@ -90,8 +95,12 @@ function App() {
 
   return (
     <Router>
-      <div className="container-fluid">
-        <Navbar movies={movies} onSearch={handleSearch} />
+      <body className={`container-fluids ${darkMode ? "darkMode" : ""}`}>
+        <Navbar
+          movies={movies}
+          onSearch={handleSearch}
+          onModeToggle={handleModeToggle}
+        />
         <div className="row">
           <div className="col-md-2">
             <Genre
@@ -111,7 +120,7 @@ function App() {
             />
           </Routes>
         </div>
-      </div>
+      </body>
     </Router>
   );
 }
