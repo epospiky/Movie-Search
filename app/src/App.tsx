@@ -4,6 +4,7 @@ import MovieList from "./components/MovieList";
 import Navbar from "./components/Navbar";
 import Genre from "./components/ListGroup";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Footer from "./components/Footer";
 
 interface Movie {
   genre_ids: any;
@@ -120,6 +121,7 @@ function App() {
             />
           </Routes>
         </div>
+        <Footer />
       </body>
     </Router>
   );

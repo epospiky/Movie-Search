@@ -48,7 +48,7 @@ body.darkMode{
     transition: all 700ms ease-in-out;
 
 }
-.darkMode nav, .darkMode .filter__button, .darkMode .filter__container, .darkMode .search__box input, .darkMode .country__box, .darkMode .country__back--btn, .darkMode .list3__group span, .darkMode .fa, .darkMode div, .darkMode ul, .darkMode li, .darkMode .modal_bg, .darkMode .modal-title {
+.darkMode nav, .darkMode .filter__button, .darkMode .filter__container, .darkMode .search__box input, .darkMode .country__box, .darkMode .country__back--btn, .darkMode .list3__group span, .darkMode .fa, .darkMode div, .darkMode ul, .darkMode li, .darkMode .modal_bg, .darkMode .modal-title, .darkMode footer {
     background-color: #3e3d41;
     color: #e7e7e7;
 }
@@ -81,3 +81,14 @@ body.darkMode{
         justify-content: "center";
         color: "#fff";
 }
+
+footer{
+    text-shadow: 4px 4px 4px #aaa;
+    color: #272525;
+    font-size:medium;
+  }
+  footer a{
+    text-decoration: none;
+    font-family:  'Amarante', serif;
+    color: "gray";
+  }
