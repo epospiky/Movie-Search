@@ -19,7 +19,6 @@ function App() {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [searchResults, setSearchResults] = useState<Movie[]>([]);
   const [error, setError] = useState<string | null>(null);
-
   const apiKey = "f578695cc79be0401e2ea5d010ca87d0";
   const [darkMode, setDarkMode] = useState(false);
   useEffect(() => {

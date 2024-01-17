@@ -3,6 +3,7 @@ import logo from "../Images/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import MovieList, { Movie } from "./MovieList";
+import "../App.css";
 
 interface NavbarProps {
   movies: Movie[];
@@ -13,13 +14,15 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ movies, onSearch, onModeToggle }) => {
   const [searchInput, setSearchInput] = useState("");
   const [filteredMovies, setFilteredMovies] = useState<Movie[]>(movies);
-
+  const [isToggled, setIsToggled] = useState(false);
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const input = event.target.value;
     setSearchInput(input);
     onSearch(input);
   };
-
+  const handleToggle = () => {
+    setIsToggled(!isToggled);
+  };
   return (
     <div className="row">
       <nav className="col-12 navbar navbar-expand-lg bg-body-tertiary ">
@@ -44,32 +47,18 @@ const Navbar: React.FC<NavbarProps> = ({ movies, onSearch, onModeToggle }) => {
             </label>
           </div>
           <div className="mode-box w-25">
-            <li
-              className="list-none mode__box "
-              style={{ listStyleType: "none" }}
-            >
+            <li className="mode__box ">
               <div
                 className="mode__box--container rounded-pill"
-                style={{
-                  cursor: "pointer",
-                  background: "gray",
-                  position: "relative",
-                  width: "50px",
-                  height: "25px",
-                  paddingTop: "1px",
-                  paddingLeft: "1px",
-                  paddingRight: "1px",
+                onClick={() => {
+                  handleToggle();
+                  onModeToggle();
                 }}
-                onClick={onModeToggle}
               >
                 <div
-                  className="switch rounded-circle"
-                  style={{
-                    position: "absolute",
-                    cursor: "pointer",
-                    width: "23px",
-                    height: "23px",
-                  }}
+                  className={`switch rounded-circle ${
+                    isToggled ? "darkOn" : ""
+                  }`}
                 ></div>
               </div>
             </li>

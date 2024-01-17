@@ -54,6 +54,13 @@ const MovieList: React.FC<MovieListProps> = ({ movies }) => {
             <p style={{ color: "gray" }} className="fst-italic">
               {movie.vote_average.toFixed(1)}/10
             </p>
+
+            <div className="rating-circle">
+              <div
+                className="rating-fill"
+                style={{ width: `${(movie.vote_average / 10) * 100}%` }}
+              ></div>
+            </div>
             <p
               style={{ color: "#067488", margin: 0 }}
               className=" text-wrap text-break fw-semibold h6"
@@ -72,22 +79,14 @@ const MovieList: React.FC<MovieListProps> = ({ movies }) => {
           className="modal_bg"
           style={{
             backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(https://image.tmdb.org/t/p/original${selectedMovie.backdrop_path})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            maxHeight: "100vh",
-            width: "100%",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
           }}
         >
           <Modal.Header closeButton>
-            <Modal.Title className="text-wrap text-break fw-semibold h6 modal-title">
+            <Modal.Title className="text-wrap text-center fw-semibold h6 modal-title">
               {selectedMovie.title}
             </Modal.Title>
           </Modal.Header>
-          <Modal.Body>
+          <Modal.Body className="modal-body">
             <img
               src={`https://image.tmdb.org/t/p/original${selectedMovie.poster_path}`}
               alt={`${selectedMovie.title} Poster`}
