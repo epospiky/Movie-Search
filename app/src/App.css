@@ -108,8 +108,6 @@ body.darkMode{
         align-items: center;
         justify-content: center;
 }
-.modal-body{
-}
 footer{
     text-shadow: 4px 4px 4px #aaa;
     color: #272525;
@@ -140,4 +138,6 @@ footer a{
     height: 100%;
     background-color: #067488;
   }
-  
+  img.rounded{
+    width: 100%;
+  }

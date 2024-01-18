@@ -33,12 +33,12 @@ const MovieList: React.FC<MovieListProps> = ({ movies }) => {
   };
 
   return (
-    <div className="col-md-10">
+    <div className="col-sm-12 col-md-10">
       <h1 className="text-center ">Popular Movies</h1>
       <ul className="row" style={{ listStyleType: "none" }}>
         {movies.map((movie) => (
           <li
-            className="col-md-2 mb-3 mx-2"
+            className="col-xs-12 col-md-4 col-lg-2 mb-3 mx-2"
             key={movie.id}
             onClick={() => handleShow(movie)}
             style={{ cursor: "pointer" }}
