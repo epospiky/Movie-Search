@@ -119,14 +119,21 @@ footer a{
     font-family:  'Amarante', serif;
     color: gray;
   }
-
+.img-cont{
+    position: relative;
+}
+.rating-cont{
+    position: absolute;
+    top: 2px;
+    left: 2px;
+}
 
 .rating-circle {
     position: relative;
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: #ccc;
+    background-color: #9d9b9b;
     overflow: hidden;
   }
   
@@ -136,7 +143,33 @@ footer a{
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #067488;
+    background-color: #88e66b;
+  }
+  .rating-fill h6{
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 1em;
+    z-index: 1;
+    font-weight: 700;
+    color: #ccc;
+  }
+  .rating-circle::before{
+    content: '';
+    display: block;
+    height: 100%;
+    margin-left: 50%;
+    transform-origin: left;
+    border-radius: 0 100% 100% 0/50%;
+  }
+  .rating-circle::after{
+    content: '';
+    position: absolute;
+    inset: 3px;
+    background: #272525;
+    border-radius: 50%;
   }
   img.rounded{
     width: 100%;
