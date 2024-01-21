@@ -12,75 +12,77 @@ function Genre({ items, heading, onSelectItem }: Props) {
   // Check if the screen size is small (using Bootstrap classes)
   const isSmallScreen = window.innerWidth < 576;
 
-  if (isSmallScreen) {
-    return (
-      <div className="col-md-4">
-        <h1>{heading}</h1>
-        {items.length === 0 && <p>No item found!</p>}
-        <div className="accordion" id="accordionExample">
-          {items.map((item, index) => (
-            <div className="accordion-item" key={item}>
-              <h2 className="accordion-header">
-                <button
-                  className={`accordion-button ${
-                    selectedIndex === index ? "active" : ""
-                  }`}
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target={`#collapse${index}`}
-                  aria-expanded={selectedIndex === index ? "true" : "false"}
-                  aria-controls={`collapse${index}`}
-                  onClick={() => {
-                    setSelectedIndex(index);
-                    onSelectItem(item);
-                  }}
-                >
-                  {item}
-                </button>
-              </h2>
-              <div
-                id={`collapse${index}`}
-                className={`accordion-collapse collapse ${
-                  selectedIndex === index ? "show" : ""
-                }`}
-                data-bs-parent="#accordionExample"
+  return (
+    <div>
+      {isSmallScreen ? (
+        <div className="accordion" id="genreAccordion">
+          <div className="accordion-item">
+            <h2 className="accordion-header">
+              <button
+                className="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#genreAccordionBody"
+                aria-expanded={selectedIndex !== -1 ? "true" : "false"}
+                aria-controls="genreAccordionBody"
               >
-                <div className="accordion-body">
-                  {/* Your item details here */}
-                  <strong>{`This is the ${item}'s accordion body.`}</strong>
-                  {/* Additional details... */}
-                </div>
+                {heading}
+              </button>
+            </h2>
+            <div
+              id="genreAccordionBody"
+              className={`accordion-collapse collapse ${
+                selectedIndex !== -1 ? "show" : ""
+              }`}
+              data-bs-parent="#genreAccordion"
+            >
+              <div className="accordion-body">
+                <ul className="list-group">
+                  {items.map((item, index) => (
+                    <li
+                      key={item}
+                      className={
+                        selectedIndex === index
+                          ? "list-group-item active"
+                          : "list-group-item"
+                      }
+                      onClick={() => {
+                        setSelectedIndex(index);
+                        onSelectItem(item);
+                      }}
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
-          ))}
+          </div>
         </div>
-      </div>
-    );
-  }
-
-  // Render the default list for larger screens
-  return (
-    <div className="col-md-4">
-      <h1>{heading}</h1>
-      {items.length === 0 && <p>No item found!</p>}
-      <ul className="list-group">
-        {items.map((item, index) => (
-          <li
-            key={item}
-            className={
-              selectedIndex === index
-                ? "list-group-item active"
-                : "list-group-item"
-            }
-            onClick={() => {
-              setSelectedIndex(index);
-              onSelectItem(item);
-            }}
-          >
-            {item}
-          </li>
-        ))}
-      </ul>
+      ) : (
+        <div>
+          <h1>{heading}</h1>
+          {items.length === 0 && <p>No item found!</p>}
+          <ul className="list-group">
+            {items.map((item, index) => (
+              <li
+                key={item}
+                className={
+                  selectedIndex === index
+                    ? "list-group-item active"
+                    : "list-group-item"
+                }
+                onClick={() => {
+                  setSelectedIndex(index);
+                  onSelectItem(item);
+                }}
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

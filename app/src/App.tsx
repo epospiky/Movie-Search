@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import MovieList from "./components/MovieList";
 import Navbar from "./components/Navbar";
-import Genre from "./components/ListGroup";
+import Genre from "./components/Genre";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer";
 
