@@ -27,9 +27,11 @@ const Navbar: React.FC<NavbarProps> = ({ movies, onSearch, onModeToggle }) => {
     <div className="row">
       <nav className="col-12 navbar navbar-expand-lg bg-body-tertiary ">
         <div className="container-fluid">
-          <a className="navbar-brand w-25" href="#">
-            <img src={logo} alt="Logo" className="w-50 h-50" />
-          </a>
+          <div className="navbar-brand w-25">
+            <a href="#">
+              <img src={logo} alt="Logo" className="w-50 h-50" />
+            </a>
+          </div>
           <div className="col-auto w-50" id="">
             <label className=" w-100" htmlFor="search">
               <FontAwesomeIcon

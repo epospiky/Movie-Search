@@ -174,3 +174,12 @@ footer a{
   img.rounded{
     width: 100%;
   }
+  .darkMode .rating-cont{
+    background-color:transparent!important;
+  }
+  .darkMode .rating-circle{
+background-color: #9d9b9b!important;
+  }
+  .darkMode .rating-fill{
+    background-color: #88e66b!important;
+  }
